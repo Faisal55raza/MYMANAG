@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Oswald:wght@200&family=Roboto:wght@300&family=Volkhov&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+:root {
+  --roboto: "Roboto", sans-serif;
+  --open-sans: "Open Sans", sans-serif;
+  --oswald: "Oswald", sans-serif;
+  --heading: "Volkhov", serif;
+  --primary-color: #554972;
+  --secondary-color: #dbd8e317;
+  --text-color: #161616;
+  --heading-color: #2a2438;
+  --link-color: #5f85db;
+  --body-bg: #ffffff;
+}
+html {
+  scroll-behavior: smooth;
+}
+body {
+  background-color: var(--body-bg);
+  color: var(--text-color);
+  font-family: var(--roboto);
+  text-align: center;
+  letter-spacing: 2px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-height: 100vh;
+  width: 100%;
+}

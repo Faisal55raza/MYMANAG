@@ -1,0 +1,31 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--heading);
+  color: var(--heading-color);
+}
+hr {
+  margin: 20px auto;
+  border: none !important;
+  background-color: black;
+  height: 2px;
+  width: 100%;
+}
+.link {
+  color: inherit !important;
+  text-decoration: none;
+}
+.btn {
+  width: 60%;
+  padding: 30px auto !important;
+  font-size: 30px !important;
+  margin: 20px auto !important;
+}
+.Message {
+  color: #f50157 !important;
+  font-family: var(--oswald);
+  cursor: pointer;
+}
