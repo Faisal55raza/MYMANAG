@@ -1,0 +1,117 @@
+.Profile {
+  position: relative;
+  margin: 0px auto;
+  width: 100vw;
+  min-height: 100vh;
+  justify-content: space-between;
+  flex-wrap: wrap !important;
+}
+.Profile__Left {
+  width: 65vw;
+  height: 100vh;
+}
+.Profile__Left label {
+  color: var(--link-color);
+  font-size: 20px;
+}
+.Profile__Left input,
+textarea {
+  padding: 5px;
+  width: 100% !important;
+  margin: 10px auto;
+  height: 2rem;
+}
+.Profile__Left textarea {
+  height: 10rem;
+}
+.Profile__Left div {
+  width: 95%;
+  text-align: left;
+  margin: 10px auto;
+}
+.Profile__Right {
+  position: relative;
+  width: 30vw;
+  height: 100vh;
+  background-color: var(--primary-color);
+  position: sticky;
+  top: 0;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  color: white;
+  font-family: var(--open-sans);
+  font-size: 20px;
+  overflow-y: auto;
+}
+.ProfilePic {
+  width: 15rem;
+  height: 15rem;
+  object-fit: cover;
+  border-radius: 20rem;
+  -webkit-border-radius: 20rem;
+  -moz-border-radius: 20rem;
+  -ms-border-radius: 20rem;
+  -o-border-radius: 20rem;
+  border: 10px solid white;
+  margin: 20px 0px;
+}
+.Profile__Box {
+  flex-direction: column;
+  height: 50%;
+}
+.Profile__Box label {
+  background-color: #f50157;
+  padding: 5px 15px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  cursor: pointer;
+}
+.Profile__Box input {
+  display: none;
+}
+.Key::after {
+  content: ":";
+  margin: 0px 3px;
+}
+.Container {
+  overflow: hidden;
+  width: 90% !important;
+  height: fit-content;
+  margin: auto;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  text-align: left;
+  line-height: 3;
+}
+.Container div {
+  width: 100%;
+  border-bottom: 1px solid whitesmoke;
+  margin: 20px auto;
+}
+.btn {
+  position: absolute !important;
+  bottom: 3px;
+  left: 3px;
+}
+@media (max-width: 900px) {
+  .Profile {
+    flex-direction: column-reverse;
+  }
+  .Profile__Left {
+    width: 100vw !important;
+  }
+  .Profile__Right {
+    width: 100vw;
+    position: relative;
+  }
+
+  .Profile__Left input,
+  textarea {
+    width: 90% !important;
+  }
+}

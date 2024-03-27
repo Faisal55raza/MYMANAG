@@ -1,0 +1,15 @@
+.MessageBox {
+  margin-top: 15rem;
+  position: sticky;
+  top: 0;
+  cursor: pointer;
+  height: 80vh;
+  width: 30vw;
+  font-family: var(--open-sans);
+  font-weight: bolder;
+  font-size: 20px;
+  text-align: center;
+  padding: 20px;
+  background-color: var(--primary-color);
+  color: white;
+}
