@@ -1,0 +1,16 @@
+.banner {
+    margin:2rem;
+    background-image: url("../assets/MYMANAG.png"); 
+    background-position: center;
+    border-radius: 40px;
+  
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 40vmin;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
