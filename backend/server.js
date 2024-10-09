@@ -26,7 +26,11 @@ const connectDB = async()=>{
 dotenv.config()
 app.use(express.json())
 app.use(cookieParser())
-app.use(cors({origin:["http://localhost:5173"], credentials:true}))
+app.use(cors({origin:["http://localhost:5173"],    
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization", "credentials","withCredentials"],
+    credentials: true
+}));
 app.use("/api/auth",authRoute)
 app.use("/api/users",userRoute)
 app.use("/api/posts",postRoute)
