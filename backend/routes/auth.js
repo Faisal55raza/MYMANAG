@@ -22,26 +22,42 @@ router.post("/register", async(req,res) => {
 
 
 // Login 
-router.post("/login", async(req,res) => {
+router.post("/login", async (req, res) => {
     try {
-        const user = await User.findOne({email:req.body.email})
+        const user = await User.findOne({ email: req.body.email });
 
-        if(!user){
-            return res.status(404).json("User not found!")
-        }
-        const match = await bcrypt.compare(req.body.password,user.password)
+        
 
-        if(!match){
-            return res.status(401).json("Wrong Credentials!")
+        if (!user) {
+            return res.status(404).json({ message: "User not found!" });
         }
-        const token = jwt.sign({_id:user._id,username:user.username,email:user.email},process.env.SECRET,{expiresIn:"10d"})
-        const {password, ...info }  = user._doc
-        res.cookie("token",token).status(200).json(info)
+
+        const match = await bcrypt.compare(req.body.password, user.password);
+
+        if (!match) {
+            return res.status(401).json({ message: "Wrong Credentials!" });
+        }
+
+        const token = jwt.sign(
+            { _id: user._id, username: user.username, email: user.email },
+            process.env.SECRET,
+            { expiresIn: "10d" }
+        );
+
+        const { password, ...info } = user._doc;
+
+        res.status(200).json({
+            success: true,
+            info,
+            token,
+        });
 
     } catch (err) {
-        res.status(500).json(err)
+        console.log(err);
+        res.status(500).json({ error: err.message });
     }
-})
+});
+
 
 
 // Logout
@@ -57,7 +73,16 @@ router.get("/logout", async(req,res) => {
 
 // Refetch User
 router.get("/refetch", (req,res) => {
-    const token = req.cookies.token
+    const authHeader = req.headers['authorization'];
+   
+    if(!authHeader){
+        return res.status(401).json("Welcome and Login!")
+    } 
+    const token = authHeader.split(' ')[1];
+    if(!token){
+        return res.status(401).json("Welcome and Login!")
+       
+    } 
     jwt.verify(token,process.env.SECRET,{},async(err,data) => {
         if(err){
             return res.status(404).json(err)

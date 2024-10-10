@@ -8,6 +8,7 @@ import { useContext, useEffect, useState } from "react"
 import { useLocation, Link } from "react-router-dom"
 import { UserContext } from "../context/UserContext"
 import "./Home.css";
+import Notiflix from 'notiflix';
 
 
 const Home = () => {
@@ -30,7 +31,7 @@ const Home = () => {
       }
       setLoader(false)
     } catch (err) {
-      console.log(err)
+      Notiflix.Notify.failure('Something Went Wrong');
       setLoader(true)
     }
   }

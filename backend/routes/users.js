@@ -30,6 +30,7 @@ router.delete("/:id", verifyToken, async(req,res) => {
         await Comment.deleteMany({userId:req.params.id})
         res.status(200).json("User has been deleted!")
     } catch (err) {
+
         res.status(500).json(err)
     }
 })
@@ -39,7 +40,7 @@ router.delete("/:id", verifyToken, async(req,res) => {
 router.get("/:id", async(req,res) => {
     try {
         const user = await User.findById(req.params.id)
-        const { password, ...info } = user._doc
+        const { password, ...info } = user._doc;
         res.status(200).json(info)
     } catch (err) {
         res.status(500).json(err)

@@ -3,15 +3,24 @@ import { URL } from "../url"
 import { useContext } from "react"
 import { UserContext } from "../context/UserContext"
 import axios from "axios"
+import Notiflix from 'notiflix';
 
 const Comment = ({ c,post }) => {
     const {user} = useContext(UserContext)
-    const deleteComment = async (id) => {      
+    const deleteComment = async (id) => {
+        const token = localStorage.getItem("token") // Retrieve the token from local storage
+
         try {
-            await axios.delete(URL + "/api/comments/" + id ,{withCredentials:true})
+            await axios.delete(URL + "/api/comments/" + id, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                },
+                withCredentials: true
+            })
             window.location.reload(true)
+            Notiflix.Notify.success("Comment Deleted Successfully");
         } catch (err) {
-            console.log(err)
+            Notiflix.Notify.failure('Something Went Wrong');
         }
     }
 

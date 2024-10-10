@@ -7,6 +7,8 @@ import { URL } from "../url"
 import { useContext, useEffect, useState } from "react"
 import { useLocation, Link } from "react-router-dom"
 import { UserContext } from "../context/UserContext"
+import Notiflix from 'notiflix';
+
 
 const MyBlogs = () => {
     const { search } = useLocation()
@@ -28,7 +30,7 @@ const MyBlogs = () => {
             }
             setLoader(false)
         } catch (err) {
-            console.log(err)
+            Notiflix.Notify.failure('Something went wrong');
             setLoader(true)
         }
     }

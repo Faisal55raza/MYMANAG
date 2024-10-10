@@ -3,22 +3,26 @@ import { UserContext } from "../context/UserContext"
 import axios from "axios"
 import { URL } from "../url"
 import { Link, useNavigate } from "react-router-dom"
+import Notiflix from 'notiflix';
 
 const Menu = () => {
     const {user} = useContext(UserContext)
     const {setUser} = useContext(UserContext)
     const navigate = useNavigate()
 
-    const handleLogout = async() => {
-        try{
-            const res = await axios.get(URL + "/api/auth/logout", {withCredentials:true})
-            console.log(res)
+    const handleLogout = async () => {
+        try {
+            const res = await axios.get(URL + "/api/auth/logout", { withCredentials: true })
+            
+            localStorage.removeItem("token") // Clear the token from local storage
             setUser(null)
+            Notiflix.Notify.success('Logout succesfully');
             navigate("/login")
-        } catch(err) {
-            console.log(err)
+        } catch (err) {
+            Notiflix.Notify.failure('Something Went Wrong');
         }
     }
+    
     
     return (
         <div className="bg-black w-[200px] z-10 flex flex-col items-start absolute top-12 right-6 md:right-32 rounded-md p-4 space-y-4">

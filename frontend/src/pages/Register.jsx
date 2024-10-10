@@ -3,6 +3,7 @@ import Footer from "../components/Footer"
 import { useState } from 'react'
 import axios from 'axios' 
 import { URL } from '../url'
+import Notiflix from 'notiflix';
 
 const Register = () => {
     const [username, setUsername] = useState('')
@@ -17,11 +18,12 @@ const Register = () => {
             setUsername(res.data.username)
             setEmail(res.data.email)
             setPassword(res.data.password)
+            Notiflix.Notify.success('User Registered Succesfully');
             setError(false)
             navigate("/login")
         } catch (err) {
             setError(true)
-            console.log(err)
+            Notiflix.Notify.failure('Something Went Wrong');
         }
     }
 

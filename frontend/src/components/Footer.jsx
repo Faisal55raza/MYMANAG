@@ -23,13 +23,13 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col text-white">
-          <p className="hover:text-gray-400">Facebook</p>
-          <p className="hover:text-gray-400">Instagram</p>
-          <p className="hover:text-gray-400">Twitter</p>
-          <p className="hover:text-gray-400">LinkedIn</p>
+          <a target="blank" href="https://github.com/Faisal55raza/" className="hover:text-gray-400">Github</a>
+          <a target="blank" href="https://www.instagram.com/f.03.43.z.21/" className="hover:text-gray-400">Instagram</a>
+          <a target="blank" href="https://faisal-raza-portfolio.vercel.app/" className="hover:text-gray-400">Portfolio</a>
+          <a target="blank" href="https://www.linkedin.com/in/faisal-raza-86556a258/" className="hover:text-gray-400">LinkedIn</a>
         </div>
       </div>
-      <p className="py-2 pb-6 text-center text-white bg-black text-sm">All Rights Reserved @Blogopedia 2023</p>
+      <p className="py-2 pb-6 text-center text-white bg-black text-sm">All Rights Reserved @MYMANAG 2024</p>
     </>
   )
 }

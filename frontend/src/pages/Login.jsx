@@ -4,6 +4,7 @@ import { useContext, useState } from 'react'
 import axios from 'axios' 
 import { URL } from '../url'
 import { UserContext } from '../context/UserContext'
+import Notiflix from 'notiflix';
 
 const Login = () => {
     const [email, setEmail] = useState('')
@@ -14,12 +15,17 @@ const Login = () => {
 
     const handleLogin = async (req,res) => {
         try {
-            const res = await axios.post(URL + "/api/auth/login",{email,password},{withCredentials:true})
-            setUser(res.data)
+            const res = await axios.post(URL + "/api/auth/login",{email,password},{withCredentials:true});
+            if (res) {
+            
+                localStorage.setItem('token', res.data.token);
+            }
+            Notiflix.Notify.success('Login succesfully');
+            setUser(res.data.info)
             navigate("/")
         } catch (err) {
             setError(true)
-            console.log(err)
+            Notiflix.Notify.failure("Wrong Credentials or something went wrong");
         }     
     }
 
