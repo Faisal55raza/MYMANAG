@@ -11,7 +11,8 @@ import Notiflix from 'notiflix';
 const EditPost = () => {
     const [title, setTitle] = useState("");
     const [desc, setDesc] = useState("");
-    const [file, setFile] = useState("");
+    const [image, setImage] = useState(null);
+    const [imagePreview, setImagePreview] = useState("");
     const [cat, setCat] = useState("");
     const [cats, setCats] = useState([]);
 
@@ -29,7 +30,7 @@ const EditPost = () => {
             });
             setTitle(res.data.title);
             setDesc(res.data.desc);
-            setFile(res.data.photo);
+            setImagePreview(res.data.photo);
             setCats(res.data.categories);
         } catch (err) {
             Notiflix.Notify.failure('Something Went Wrong');
@@ -44,28 +45,8 @@ const EditPost = () => {
             username: user.username,
             userId: user._id,
             categories: cats,
+            photo: image, // Include the base64 image directly
         };
-
-        if (file) {
-            const data = new FormData();
-            const filename = Date.now() + file.name;
-            data.append("img", filename);
-            data.append("file", file);
-            post.photo = filename;
-
-            // Image upload
-            try {
-                const token = localStorage.getItem("token"); // Retrieve token from local storage
-                await axios.post(URL + "/api/upload", data, {
-                    headers: {
-                        Authorization: `Bearer ${token}`, // Attach token to the request
-                    },
-                });
-                Notiflix.Notify.success('Post Updated Successfully');
-            } catch (err) {
-                Notiflix.Notify.failure('Something Went Wrong');
-            }
-        }
 
         // Post update
         try {
@@ -75,9 +56,26 @@ const EditPost = () => {
                     Authorization: `Bearer ${token}`, // Attach token to the request
                 },
             });
+            Notiflix.Notify.success('Post Updated Successfully');
             navigate("/posts/post/" + res.data._id);
         } catch (err) {
             console.log(err);
+            Notiflix.Notify.failure('Something Went Wrong');
+        }
+    };
+
+    const handleImageChange = (e) => {
+        if (e.target.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = () => {
+                if (reader.readyState === 2) {
+                    setImagePreview(reader.result); // Set the preview of the image
+                    setImage(reader.result); // Set the base64 string for the image
+                }
+            };
+
+            reader.readAsDataURL(e.target.files[0]); // Read the selected file as a data URL
         }
     };
 
@@ -112,10 +110,12 @@ const EditPost = () => {
                         className="outline-none px-4 py-2"
                     />
                     <input
-                        onChange={(e) => setFile(e.target.files[0])}
+                        onChange={handleImageChange}
                         type="file"
+                        accept="image/*"
                         className="px-4"
                     />
+                    {imagePreview && <img src={imagePreview} alt="Image Preview" className="mt-2 w-full h-auto" />} {/* Image preview */}
                     <div className="flex flex-col">
                         <div className="flex items-center space-x-4 md:space-x-8">
                             <input

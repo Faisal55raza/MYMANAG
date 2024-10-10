@@ -1,5 +1,5 @@
 import React from 'react'
-import { IF } from '../url'
+
 
 const ProfilePosts = ({p}) => {
     return (

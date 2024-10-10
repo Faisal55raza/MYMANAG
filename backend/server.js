@@ -10,6 +10,8 @@ const authRoute = require('./routes/auth')
 const userRoute = require('./routes/users')
 const postRoute = require('./routes/posts')
 const commentRoute = require('./routes/comments')
+const cloudinary = require('cloudinary')
+const bodyParser = require('body-parser')
 
 
 // Database
@@ -24,6 +26,7 @@ const connectDB = async()=>{
 
 // Middlewares
 dotenv.config()
+app.use(bodyParser.json({ limit: '10mb' }));
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({origin:["https://mymanag-faisal.vercel.app","http://localhost:5173",],    
@@ -35,23 +38,13 @@ app.use("/api/auth",authRoute)
 app.use("/api/users",userRoute)
 app.use("/api/posts",postRoute)
 app.use("/api/comments",commentRoute)
-app.use("/images",express.static(path.join(__dirname,"/images")))
 
-// Image upload
-const storage = multer.diskStorage({
-    destination:(req, file, fn) => {
-        fn(null,"images")
-    },
-    filename:(req, file, fn) => {
-        fn(null, req.body.img)
-        // fn(null, 'image.jpg')
-    }
-})
 
-const upload = multer({storage:storage})
-app.post("/api/upload", upload.single("file"), (req,res) => {
-    // console.log(req.body)
-    res.status(200).json("Image has been uploaded successfully!")
+cloudinary.config({
+    cloud_name : process.env.CLOUDINARY_NAME,
+    api_key : process.env.CLOUDINARY_API_KEY,
+    api_secret : process.env.CLOUDINARY_SECRET_KEY,
+
 })
 
 app.listen(process.env.PORT, ()=> {
