@@ -144,7 +144,8 @@ const PostDetails = () => {
                         <input
                             onChange={(e) => setComment(e.target.value)}
                             type="text"
-                            placeholder="Write a comment"
+                            value={comment}
+                            placeholder={"Write a comment"}
                             className="md:w-[80%] outline-none px-4 py-2 mt-4 md:mt-0"
                         />
                         <button onClick={postComment} className="text-white bg-black px-2 py-2 md:w-[20%] mt-4 md:mt-0">
