@@ -78,9 +78,11 @@ const PostDetails = () => {
                 { comment: comment, author: user.username, postId: postId, userId: user._id },
                 { headers: { Authorization: `Bearer ${token}` }, withCredentials: true }
             );
-            window.location.reload(true);
+            fetchPostComments();
+            setComment("");
+            Notiflix.Notify.success('Comment Posted Sucessfully');
         } catch (err) {
-            console.log(err);
+            Notiflix.Notify.failure('Something Went Wrong');
         }
     };
 
