@@ -1,5 +1,5 @@
 import React from 'react'
-
+import { Link } from 'react-router-dom'
 
 const ProfilePosts = ({p}) => {
     return (
@@ -21,7 +21,9 @@ const ProfilePosts = ({p}) => {
                         <p>{new Date(p.updatedAt).toString().slice(16,24)}</p>
                     </div>
                 </div>
-                <p className="text-sm md:text-lg">{p.desc}</p>
+                <Link to={`/posts/post/${p._id}`}>
+                <p className="text-sm md:text-lg">{p.desc.slice(0,150) + " ...Read more"}</p>
+                </Link>
             </div>
 
         </div>
