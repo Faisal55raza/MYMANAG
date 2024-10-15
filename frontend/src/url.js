@@ -1,1 +1,1 @@
-export const URL = "https://mymanag-backend-faisal.vercel.app"
+export const URL = "https://miscellineous.onrender.com"
