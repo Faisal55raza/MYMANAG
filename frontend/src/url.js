@@ -1,1 +1,1 @@
-export const URL = "https://miscellineous.onrender.com"
+export const URL = "https://prior-bernadene-faisal2072-f18de27c.koyeb.app"
