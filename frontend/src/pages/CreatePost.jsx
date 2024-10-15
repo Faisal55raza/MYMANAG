@@ -60,7 +60,6 @@ const CreatePost = () => {
                     Notiflix.Notify.success('Post Created Successfully');
                     navigate("/posts/post/" + response.data._id);
                 } catch (err) {
-                    console.log(err);
                     Notiflix.Notify.failure('Something Went Wrong');
                 }
             }
