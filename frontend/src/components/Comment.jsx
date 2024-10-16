@@ -4,8 +4,9 @@ import { useContext } from "react"
 import { UserContext } from "../context/UserContext"
 import axios from "axios"
 import Notiflix from 'notiflix';
+import PostDetails from "../pages/PostDetails"
 
-const Comment = ({ c,post }) => {
+const Comment = ({ c,post,func }) => {
     const {user} = useContext(UserContext)
     const deleteComment = async (id) => {
         const token = localStorage.getItem("token") // Retrieve the token from local storage
@@ -17,7 +18,8 @@ const Comment = ({ c,post }) => {
                 },
                 withCredentials: true
             })
-            window.location.reload(true)
+            
+            func();
             Notiflix.Notify.success("Comment Deleted Successfully");
         } catch (err) {
             Notiflix.Notify.failure('Something Went Wrong');
